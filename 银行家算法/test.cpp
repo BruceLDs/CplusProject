@@ -10,15 +10,16 @@ static int Max[MaxNumber];//最大资源总数
 static int Allocation[MaxNumber][MaxNumber];//可分配资源
 static int Need[MaxNumber][MaxNumber];
 #endif
-static int Request[MaxNumber];
-static int SafeOrder[MaxNumber];
-static bool Finish[MaxNumber];
+static int Request[MaxNumber];//请求资源数组
+static int SafeOrder[MaxNumber];//安全序列
+static bool Finish[MaxNumber];//每个进程的Finish状态
 static char sourceName[] = { 'A', 'B', 'C', 'D', 'E', 'F'};	  //资源名称
 /*
 （1）有录入界面动态录入进程数、资源种类数、各类资源总数、t0时刻各进程的最大需求数、已分配数等信息；
 （2）有算法选择界面，能够进行安全性检测、对进程动态请求资源的银行家算法检查、退出等的功能选择，要求可以进行多进程多次的资源请求；
 （3）有输出界面，要求能够输出安全性检测的结果、如安全能够输出安全序列、能够输出进程请求资源后是否分配的结果，若不能分配要输出原因，如果能够分配，要输出分配后进程及资源的状态。
 */
+//0 :1 0 0  0
 #if 1
 static int n = 5;//进程数
 static int m = 4;//资源种类数
@@ -150,10 +151,10 @@ bool isSystemSafe()
 			for (int j = 0; j < m; j++)
 				cout << work[j] << " , ";
 			cout << endl;
-		/*	cout << "Need[ " << i << "] = " ;
+			cout << "Need[ " << i << "] = " ;
 			for (int j = 0; j < m; j++)
 				cout << Need[i][j] << " , ";
-			cout << endl;*/
+			cout << endl;
 			cout << "Finish[ " << i << " ] = true" << endl;
 			Finish[i] = true;
 			SafeOrder[FinishNumebr] = i;
@@ -204,15 +205,33 @@ void Apply(){
 		cout << "分配失败，找不到其安全序列！" << endl;
 	}
 }
-void test(){
-	//getData();//获取数据
-	outData();//输出数据
-	isSystemSafe();
-	Apply();
+void menu(){
+	cout << "*********************************" << endl;
+	cout << "******1. 获取数据信息************" << endl;
+	cout << "******2. 输出数据信息      ********" << endl;
+	cout << "******3. 寻找安全序列安全********" << endl;
+	cout << "******4. 进程请求资源      ********" << endl;
+	cout << "******0. 退出系统            ********" << endl;
+	cout << "*********************************" << endl;
+	int k;
+	cin >> k;
+	switch (k)
+	{
+	case 1:getData();//获取数据
+		menu(); break;
+	case 2:outData();//输出数据
+	menu(); break;
+	case 3:isSystemSafe();
+	menu(); break;
+	case 4:Apply();
+	menu(); break;
+	default:cout << "退出系统" << endl;
+		break;
+	}
 }
 int main()
 {
-	test();
+	menu();
 	return 0;
 }
 
