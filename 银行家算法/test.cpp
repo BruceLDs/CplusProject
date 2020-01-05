@@ -21,23 +21,19 @@ static char sourceName[] = { 'A', 'B', 'C', 'D', 'E', 'F'};	  //资源名称
 */
 //0 :1 0 0  0
 #if 1
-static int n = 5;//进程数
-static int m = 4;//资源种类数
-static int Available[MaxNumber] = { 1, 6, 2, 2};//可利用资源
-static int Max[MaxNumber] = {3, 12, 14, 14};//最大资源总数
+static int n = 3;//进程数
+static int m = 2;//资源种类数
+static int Available[MaxNumber] = { 2, 4};//可利用资源
+static int Max[MaxNumber] = {10, 13};//最大资源总数
 static int Allocation[MaxNumber][MaxNumber] = {
-	{ 0, 0, 3, 2 },
-	{ 1, 0, 0, 0 },
-	{ 1, 3,  5, 4},
-	{ 0 ,3, 3, 2 },
-	{ 0, 0, 1, 4 }
+	{ 4, 3 },
+	{ 2, 2 },
+	{ 2, 4}
 };//可分配资源
 static int Need[MaxNumber][MaxNumber] = {
-	{ 0, 0, 1, 2 },
-	{ 1, 7, 5, 0 },
-	{ 2, 3, 5, 6 },
-	{ 0, 6, 5, 2 },
-	{ 0, 6, 5, 6 }
+	{6, 5},
+	{3, 4},
+	{1, 3}
 };
 #endif
 void getData(){
@@ -183,7 +179,7 @@ bool isSystemSafe()
 }
 void Apply(){
 	int ptype;
-	cout << "请输入请求资源进程类型（例0，1，2）：" << endl;
+	cout << "请输入请求资源进程类型：" << endl;
 	cin >> ptype;
 	cout << "请输入请求资源：" << endl;
 	for (int i = 0; i < m; i++)
@@ -199,21 +195,18 @@ void Apply(){
 	Available[i] -= Request[i];
 	}
 	if (isSystemSafe()){
-		cout << "分配成功，可得到如上安全序列！" << endl;
+		cout << "分配成功，得到安全序列！" << endl;
 	}
 	else{
-		cout << "分配失败，找不到其安全序列！" << endl;
+		cout << "分配失败！" << endl;
 	}
 }
 void menu(){
-
-	cout << "*********************************" << endl;
-	cout << "******1. 获取数据信息************" << endl;
-	cout << "******2. 输出数据信息      ********" << endl;
-	cout << "******3. 寻找安全序列安全********" << endl;
-	cout << "******4. 进程请求资源      ********" << endl;
-	cout << "******0. 退出系统            ********" << endl;
-	cout << "*********************************" << endl;
+	cout << "                1. 获取数据信息           " << endl;
+	cout << "                2. 输出数据信息           " << endl;
+	cout << "                3. 寻找安全序列安全     " << endl;
+	cout << "                4. 进程请求资源           " << endl;
+	cout << "                0. 退出系统                 " << endl;
 	int k;
 	cin >> k;
 	switch (k)
