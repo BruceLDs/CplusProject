@@ -2,6 +2,17 @@
 #include<iostream>
 #include<string>
 using namespace std;
+//cÓïÑÔ½â·¨
+int lengthOfLastWord1(char * s){
+	if (!s || s == "")
+		return 0;
+	int len = strlen(s);
+	int i, j;
+	for (i = len - 1; i >= 0 && s[i] == ' '; i--);
+	for (j = i; j >= 0 && s[j] != ' '; j--);
+	return i - j;
+}
+
 int lengthOfLastWord(string s) {
 	int res = 0;
 
