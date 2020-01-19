@@ -13,13 +13,12 @@ int lengthOfLastWord1(char * s){
 	return i - j;
 }
 
+//c++½â·¨
 int lengthOfLastWord(string s) {
 	int res = 0;
-
-	if (s.length() == 0)
+	if (s.size() == 0)
 		return 0;
-
-	for (int i = s.length() - 1; i >= 0; i--)
+	for (int i = s.size() - 1; i >= 0; i--)
 	{
 		if (s[i] != ' ')
 			res++;
