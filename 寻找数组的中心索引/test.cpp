@@ -3,6 +3,8 @@
 #include <vector>
 using namespace std;
 
+
+//题解未通过，当存在负数时，无法通过题解
 int pivotIndex(vector<int>& nums) {
 	if (nums.size() == 0)
 		return -1;
