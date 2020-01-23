@@ -41,9 +41,39 @@ int pivotIndex(vector<int>& nums) {
 		return -1;
 }
 
+//力扣正确题解
+int pivotIndex1(vector<int>& nums) {
+	if (nums.size() == 0)
+		return -1;
+	int leftsum = 0;
+	int sum = 0;
+	for (auto& e : nums)
+		sum += e;
+	if (sum - nums[0] == 0)
+		return 0;
+	int i = 0;
+	while (i < nums.size()){
+		leftsum += nums[i];
+		i++;
+		if (i < nums.size() && sum - leftsum - nums[i] == leftsum)
+			return i;
+	}
+	return -1;
+}
+
+void test(vector<int> nums){
+int ret = pivotIndex(nums);
+	cout << ret << endl;
+}
+void test1(vector<int> nums1){
+	int ret = pivotIndex1(nums1);
+	cout << ret << endl;
+}
 int main(){
 	vector<int> nums = { 1, 7, 3, 6, 5, 6 };
-	int ret = pivotIndex(nums);
-	cout << ret << endl;
+	//test(nums);
+	vector<int> nums1 = { -1, -1, -1, -1, -1, -1};
+	test(nums);
+	test1(nums1);
 	return 0;
 }
