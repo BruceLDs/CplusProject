@@ -2,6 +2,8 @@
 #include<iostream>
 #include<string>
 using namespace std;
+
+//为解决溢出问题
 int myAtoi(string str) {
 	if (str.size() == 0)
 		return 0;
